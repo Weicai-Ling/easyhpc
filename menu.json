@@ -1,0 +1,14 @@
+[
+  [ "/Dashboard", "home",  "/api/wwsh/nodes", "/usr/bin/wwsh node list", "text" ],
+  [ "/Cluster", "file", "/api/wwsh/nodes/print",     "/usr/bin/wwsh node print", "text" ],
+  [ "/Cluster/Node", "",  "/api/wwsh/provisions",  "/usr/bin/wwsh node list", "text" ],
+  [ "/Cluster/Node/Network", "", "/api/wwsh/provisions",  "/usr/bin/wwsh node print", "text" ],
+  [ "/Cluster/Storage",  "", "/api/wwsh/provisions/",  "/usr/bin/wwsh node list", "text"],
+  [ "/Cluster/Storage/NFS", "", "/api/wwsh/nodes/list",  "/usr/bin/wwsh node list", "text" ] ,
+  [ "/Cluster/Storage/Lustre", "", "/api/wwsh/nodes/print",  "/usr/bin/wwsh node print", "text" ],
+  [ "/Cluster/Storage/DAOS", "", "/api/wwsh/nodes",  "/usr/bin/wwsh node list", "text"],
+  [ "/Cluster/Storage/DAOS/Mover", "", "/api/wwsh/nodes/create",  "/usr/bin/wwsh node list", "text"],
+  [ "/Queues", "file" , "/api/wwsh/nodes/",   "/usr/bin/wwsh node list", "text"],
+  [ "/Dirtory", "file" , "/api/usr/ls",   "/usr/bin/ls -l", "text"],
+  [ "/Applications","shopping-cart", "/api/wwsh/nodes/provision",  "/usr/bin/wwsh node list", "text" ]
+]

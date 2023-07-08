@@ -1,5 +1,4 @@
 #define _GNU_SOURCE
-
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -24,6 +23,21 @@ create_response (void *cls,
   unsigned int i;
   (void) cls;               /* Unused. Silent compiler warning. */
   (void) version;           /* Unused. Silent compiler warning. */
+
+  printf ("\n>>>>>>>>>>>>>>>>>> url : %s\n",url);   
+
+  if ( 0 == strncmp ( url, "/doc/", 5 )  || 
+        0 == strncmp ( url + 1 , "index", 5 ) || 
+        0 == strncmp ( url + 1 , "menu.json", 9 ) ) {
+        ret = send_file ( url , connection ); 
+        return ret;
+  } else if ( 0 == strncmp ( url, "/api/", 3 )   ) {
+        printf (" *****/api/:  %s \n", url); 
+        ret = send_api_v2 ( url, connection );
+        return ret;
+  } else {
+    printf ("\n no fetch in url \n" );   
+  }
 
   request = *ptr;
   if (NULL == request)
@@ -147,6 +161,9 @@ main (int argc, char *const *argv)
     printf ("%s PORT\n", argv[0]);
     return 1;
   }
+
+  ini_json_pages("pages.json");
+ 
   /* initialize PRNG */
   srand ((unsigned int) time (NULL));
   d = MHD_start_daemon (MHD_USE_ERROR_LOG,

@@ -1,0 +1,66 @@
+[
+  { 
+  "url": "/api/wwsh/nodes",
+  "cmd": "/usr/bin/wwsh node list",
+  "title": "List Nodes",
+  "mode": "list",
+  "template" : "eTable", 
+  "thead_line": 0, 
+  "cmnt_line": "=", 
+  "cont_line": 2, 
+  "row_sep": "\n", 
+  "col_sep": " ", 
+  "col_nr":4,
+  "create":"/api/wwsh/nodes/create",
+  "update":"/api/wwsh/nodes/update/",
+  "read":"/api/wwsh/node/print/",
+  "delete":"/api/wwsh/nodes/delete/",
+  "page_size":20
+  },
+  {
+  "url": "/api/wwsh/node/print/$hostname",
+  "cmd": "/usr/bin/wwsh node print $hostname",
+  "title": "View Nodes",
+  "mode": "read",
+  "template" : "modal" 
+  },
+  { 
+  "url": "/api/wwsh/node/print",
+  "cmd": "/usr/bin/wwsh node print",
+  "mode": "read",
+  "template" : "pre", 
+  "thead_line": 0, 
+  "cmnt_line": "=", 
+  "cont_line": 2, 
+  "row_sep": "\n", 
+  "col_sep": " ", 
+  "col_nr":4,
+  "url_create":"api/wwsh/nodes/create",
+  "url_update":"api/wwsh/nodes/update/<i>",
+  "read":"api/wwsh/nodes/<i>",
+  "url_del":"api/wwsh/nodes/delete/<i>",
+  "url_list":"api/wwsh/nodes/delete/<i>",
+  "page_id": "api/wwsh/nodes/cpid=<i>",
+  "page_size":20
+  },
+  { 
+    "url": "/api/wwsh/provisions",
+    "mode": "list",
+    "template" : "pre", 
+    "thead_line": 0, 
+    "cmnt_line": "=", 
+    "cont_line": 2, 
+    "row_sep": "\n", 
+    "col_sep": " ", 
+    "col_nr":4,
+    "url_create":"api/wwsh/nodes/create",
+    "url_update":"api/wwsh/nodes/update/<i>",
+    "read":"api/wwsh/nodes/<i>",
+    "url_del":"api/wwsh/nodes/delete/<i>",
+    "url_list":"api/wwsh/nodes/delete/<i>",
+    "page_id": "api/wwsh/nodes/cpid=<i>",
+    "page_size":20
+  }
+]
+
+

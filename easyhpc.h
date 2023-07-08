@@ -76,4 +76,73 @@ typedef struct Page
 } PAGE;
 extern PAGE pages[];
 
-#endif /* EASYHPC */
+enum MHD_Result send_file ( const char * url, struct MHD_Connection *connection);
+enum MHD_Result serve_simple_form (const void *cls,
+                   const char *mime,
+                   SESSION_PTR session,
+                   struct MHD_Connection *connection);
+
+enum MHD_Result send_api ( const char * url, struct MHD_Connection *connection );
+enum MHD_Result send_api_v2 ( const char * url, struct MHD_Connection *connection );
+void ini_json_pages( char * pagesjson );
+
+
+/********** exec.c *************************************************************/
+
+#define PARA_MAX 64
+
+void url2cmd ( char *urlcp, char **cmd ) ;
+enum MHD_Result send_cmd ( const char * url, const char *mime,
+                          SESSION_PTR session, struct MHD_Connection *connection);
+enum MHD_Result send_table ( const char * url, const char *mime,
+                          SESSION_PTR session, struct MHD_Connection *connection);
+enum MHD_Result send_json ( const char * url, const char *mime,
+                          SESSION_PTR session, struct MHD_Connection *connection);
+
+/***********files.c*************************************************************/
+
+char* read_file (const char* filename, size_t* length);
+void write_file( char *filename, char * buffer );
+
+#define ERR_DANGER_CMD "error dangerous command"
+#define SNPRNT_JSONSTR(json_str, size, str ) \
+     snprintf ( (json_str), (size), " \"%s\" ", (str) ) 
+
+//******start position *******/
+int start_line_pos ( char *str, int start_line, char sep) ;
+
+//***gen_data_ary**/
+char ** malloc_data_ary ( char * str, int rows, int cols, char * sep );
+
+//*** conv_yaml_array*/ 
+
+int snprint_json_ary ( char *yaml_ary, size_t size,char ** head, int rows, int cols );
+int snprint_exec_cmd ( char *out, size_t out_size, char ** cmd, char sep );
+
+char ** malloc_strary ( char * str, char * sep );
+
+char *malloc_trimString(char *str);
+char *malloc_trim_rmdqoute (char *str);
+#define MAXLINES 1024
+
+struct table_s { 
+        char ** thead;
+        char ** tbody;
+        char ** lines;
+        int col_nr;
+        int row_nr;
+};
+
+struct table_s * malloc_tbl ( char * filename, char ** thead, char * col_sep );
+void free_tbl ( struct table_s *tbl );
+
+/***********common.c*************************************************************/
+
+void* xmalloc (size_t size);
+void* xrealloc (void* ptr, size_t size);
+char* xstrdup (const char* s);
+
+void system_error (const char* operation);
+void error (const char* cause, const char* message);
+
+#endif    /* EASYHPC */
